@@ -44,6 +44,10 @@ $ jupyter notebook
 # then select "New" > "Notebook: PostScript"
 ```
 
+## Features
+
+* tab-completion for 371 PostScript/GhostScript keywords (built-in commands)
+
 ## Links
 
 Based on https://github.com/takluyver/bash_kernel
