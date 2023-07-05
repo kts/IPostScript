@@ -71,6 +71,15 @@ class PostscriptKernel(Kernel):
     
     #printed on startup:
     banner = "PostScript kernel..."
+
+    langauge_info = {
+        'name': 'PostScript',
+        'mimetype': 'text/postscript',
+
+        #others:
+        #codemirror_mode
+        #pygments_lexer
+    }
     
     def __init__(self, **kwargs):
         Kernel.__init__(self, **kwargs)
