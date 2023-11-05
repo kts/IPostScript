@@ -5,9 +5,16 @@ import re
 import signal
 
 from pexpect import replwrap, EOF
-import pexpect
+from pexpect import popen_spawn
 
-__version__ = "0.1.0"
+import pexpect
+import platform
+
+__version__ = "0.1.1"
+
+
+def is_windows():
+    return platform.system() == "Windows"
 
 
 class GSWrapper:
@@ -18,9 +25,16 @@ class GSWrapper:
                  cmd = 'gs'
                  ):
         """
+
+        for Windows, 'cmd' changed to 'gswin64c.exe -dNOSAFER'
         todo: config cmd can be 'gs', 'gs-X11', etc.
+        
         """
-        self.p = pexpect.spawn(cmd)
+        if is_windows():
+            cmd = 'gswin64c.exe -dNOSAFER' 
+            self.p = popen_spawn.PopenSpawn(cmd)
+        else:
+            self.p = pexpect.spawn(cmd)
 
         # maybe input/output to gs is always 'ascii'?
         self.encoding = "utf8"
@@ -49,9 +63,12 @@ class GSWrapper:
         c1 = self.p.before.decode(self.encoding)
 
         code1 = code.strip()
-        
-        assert(c1.startswith(code1))
-        r = c1[len(code1):]
+
+        if is_windows():
+            r = c1
+        else:
+            assert(c1.startswith(code1))
+            r = c1[len(code1):]
 
         # .after is always the prompt itself. ?
         # eg:  b'GS>'
