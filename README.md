@@ -6,7 +6,7 @@
 
 You must have `ghostscript` installed (https://www.ghostscript.com/)
 
-`gs` must be in your `$PATH`.
+`gs` must be in your `$PATH`. (on Windows, `gswin64c.exe`).
 
 ## Install
 
