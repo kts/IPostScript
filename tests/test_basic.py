@@ -12,8 +12,7 @@ def test_wrapper():
     """
     from IPostScript.kernel import GSWrapper
     gs = GSWrapper()
-
-    print(">>>", repr(gs.run("1 2 add =")))
+    assert(gs.run("1 2 add =") == '3')
 
     
 def test_platform():
@@ -23,4 +22,4 @@ def test_platform():
     """
     from IPostScript.kernel import is_windows
     assert(is_windows() in (True,False))
-    
+
